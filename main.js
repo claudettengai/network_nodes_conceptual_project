@@ -20,7 +20,27 @@ $(function(undefined) {
 
   $('.container').html(content);
 
-  for (var node in nodes) {
+
+  // nodeNameSort = function(a,b) {
+  //     return parseInt(a.substring(4)) - parseInt(b.substring(4));
+  // };
+
+  var nodeNames = Object.keys(nodes);
+  // nodeNames.sort(nodeNameSort);
+
+
+
+  for (var i=0; i<nodeNames.length; i++) {
+    var node = nodeNames[i];
     $('.node-list').append('<li>' + node + '</li>');
+
+    $('.node-list li').last().append('<ul class= "edge-list"></ul>');
+
+    var currentNode = nodes[node];
+    for(var edge in currentNode){
+        // $('.edge-list').last().append('<li>' + edge +  ":" + currentNode[edge] + "</li>");
+        $('.edge-list').last().append('<li>' + edge + "</li>");
+
+    }  
   }
 });
