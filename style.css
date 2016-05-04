@@ -25,24 +25,32 @@ label {
   margin-bottom: 10px;
 }
 */
-
+.description{
+	color: #666;
+	margin: -0.5em 0 1em 0;
+}
 
 .buttons{
 	text-align: center;
-	margin:2em 0 1em 0;
-	padding: 1em 0 0 0;
-}
+/*	margin:2em 0 1em 0;
+*/	/*padding: 1em 0 0 0;*/
+/*	background-color: #c0c0c0;
+*/}
 
 button{
 	font-size: 16px;
 	margin: 0.2em;
-	padding: 0.7em 3em;
+	padding: 0.7em 2em;
 
+}
+
+button:hover{
+	border: 2px solid lightseagreen;
 }
 
 
 .button-active{
-	border: 5px solid lightseagreen	;
+	border: 2px solid lightseagreen	;
 }
 
 
@@ -106,14 +114,14 @@ button{
 	text-align: center;
 	font-size: 20px;
 	width: 100%;
-	background-color: #c0c0c0;
+	/*background-color: #c0c0c0;*/
 	padding: 1em 0;
-	border: 5px solid #c0c0c0;
+	/*border: 2px solid #c0c0c0;*/
 
 }
 
-.view-more:hover{
-	border: 5px solid lightseagreen;
+#view-more:hover{
+	border: 2px solid lightseagreen;
 	background-color: #c0c0c0;
 }
 
@@ -129,16 +137,63 @@ button{
 //
 /*/
 
-
+.node-search-output{
+	background-color: #ddd;
+/*	padding: 1em 0;
+*/}
+.node-search{
+	text-align: center;
+	margin: 2em 0;
+	padding: 3em 0;
+	border: 5px solid #c0c0c0;
+}
 
 #search-node-name{
 	text-align: center;
 	font-weight: bold;
+	padding-top: 2em;
+}
+
+.edge-list-unhidden{
+	list-style-type: none;
+	font-weight: normal;
+	color: #333;
+}
+
+.edge-list-unhidden li{
+	display: inline-block;
+	padding: 1.5em 4em 1em 0;
+	font-size: 90%;
+	font-weight: normal;
+	padding-bottom: 2em;
 }
 
 
 
 
+.path-search{
+	text-align: center;
+/*	margin: 5em 0;
+*/	padding: 3em 0;
+	border: 5px solid #c0c0c0;
+}
+
+
+.node-section{
+	margin: 2em 0;
+	padding: 3em 0;
+	border: 5px solid #c0c0c0;
+}
+.node-section h1{
+	text-align: center;
+}
 
 
 
+.right-arrow{
+	margin-left: 1em;
+}
+
+#path-nodes{
+	background-color: #ddd;
+}

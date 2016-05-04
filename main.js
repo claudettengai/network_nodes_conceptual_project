@@ -27,7 +27,7 @@ $(function(undefined) {
 
 // prints out unordered nodes in list in HTML
   printList= function(){
-    for (var i=0; i<5; i++) {
+    for (var i=0; i<10; i++) {
       var node = nodeNames[i];
       $('.node-list').append('<li>' + node + '<a class= "down-arrow">&#x25BE</a>' + '</li>');
 
@@ -138,7 +138,7 @@ $(function(undefined) {
       var visibleNodesIndex= $('.node-list > li').length;
       console.log(visibleNodesIndex);
 
-      for (var i=visibleNodesIndex; i<visibleNodesIndex+5; i++){
+      for (var i=visibleNodesIndex; i<visibleNodesIndex+10; i++){
         var node = nodeNames[i];
         $('.node-list').append('<li>' + node + '<a class= "down-arrow">&#x25BE</a>' + '</li>');
 
@@ -165,25 +165,97 @@ viewMore();
 
 
 
-$('#submit-button').click(function(){
-  var val = $("#search-bar").val();
-  console.log(val);
-  console.log(nodes[val]);
+  nodeSearch= function(){
 
-  $('.search-output').append('<div id= "search-node-name">' + val + '</div>');
+    $('#submit-button').click(function(){
+      var val = $("#search-bar").val();
+      // console.log(val);
+      // console.log(nodes[val]);
+
+      var nodeNames = Object.keys(nodes);
+      var node = (nodes[val]);
+      console.log(node);
+
+      $('.node-search-output').html('<ul id= "search-node-name" class= "edge-list-unhidden">' + val + '<a class= "down-arrow">&#x25BE</a>' + '<br></ul>');
+
+      
+      for (var edge in node){
+        $('#search-node-name').last().append('<li>' + edge + '<span class = "edge-weight"><br>' + node[edge] + '</span></li>');
+      }
+
+    });
+  };
+
+  nodeSearch();
 
 
-  // for (key in nodes)
+/////////////////////////////////////////////////////////////////////
 
 
 
 
-});
+  pathSearchByLength = function(nodeQueue, targetNode, maxDepth){
+      var lastNodeName = nodeQueue[nodeQueue.length - 1];
+      if(lastNodeName == targetNode || nodeQueue.length >= maxDepth) {
+        return null;
+      }
+
+      var lastNode = nodes[lastNodeName];
+
+      var shortestPath = null;
+      for(var edgeName in lastNode) {
+        // check whether we already have this node in our path
+        if(_.includes(nodeQueue, edgeName)) {
+          continue;
+        }
+
+        if(edgeName == targetNode) {
+          nodeQueue.push(edgeName);
+          return nodeQueue;
+        }
+
+        var edge = nodes[edgeName];
+        var path = pathSearchByLength(nodeQueue.concat(edgeName), targetNode, maxDepth);
+        if(path) {
+          // always able to set new path as shortest since it must be within newly set max depth
+          shortestPath = path;
+          maxDepth = shortestPath.length - 1;
+          // setting maxDepth so we don't search this far again.  any future paths found must be shorter
+        }
+      }
+
+      return shortestPath;
+    };
+
+  // find the path with fewest nodes. eg findPath('node1', 'node7') -> ["node1", "node63", "node44", "node194", "node7"]
+  findPath = function(nodeNameA, nodeNameB){
+    shortestPath = pathSearchByLength([nodeNameA], nodeNameB, count);
+    console.log(nodes);
+    console.log(shortestPath);
+
+
+  };
 
 
 
 
+// fires findPath 
+  $('#path-submit-button').click(function(){
+    var nodeNameA = $("#node-name-A").val();
+    var nodeNameB = $("#node-name-B").val();
 
+    findPath(nodeNameA, nodeNameB);
+
+    $('.path-search-output').html('<ul id= "path-nodes" class= "edge-list-unhidden"></ul>');
+
+    for (var edge in shortestPath){
+      $('#path-nodes').last().append('<li>'+ shortestPath[edge] + '</li>');
+    }
+
+
+
+
+  });
 
 
 
