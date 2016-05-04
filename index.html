@@ -4,13 +4,39 @@
 <script type="text/javascript" src="generate_nodes.js"></script>
 <script type="text/javascript" src="main.js"></script>
 
+<!-- <script type="text/javascript" src="mainLarge.js"></script>
+ -->
 <link rel="stylesheet" type="text/css" href="style.css">
 
+
+
+<p>I'm assuming that in a practical situation each node will have a property that includes the date that they were added. So, the default list view would actually be organized by most recent additions</p>
 <div class="container">
 </div>
-<button>button</button>
+
+<form>
+  Node Search:
+  <input id= "search-bar" type="search" >
+  <input id= "submit-button" type= "button" value= "search">
+</form>
+
+<div class= "search-output"></div>
+
+
+<div class= "buttons">
+	<button id= "sort-default" class= "button-active">Sort <br> Most Recent</button>
+	<button id= "sort-az">Sort <br> A to Z</button>
+	<button id= "sort-za">Sort <br> Z to A</button>
+</div>
+
 <div>
     <ul class="node-list">
 
     </ul>
+
+    <div class= "view-more">
+    	<a id= "#view-more">View More</a>
+    </div>
 </div>
+
+
